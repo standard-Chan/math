@@ -1,0 +1,27 @@
+import math
+import matplotlib.pyplot as plt
+
+def integral (a,b,n):   #a = start point, b = end point, n = num of divide
+    def f(x):
+        global expression
+        return eval(expression)
+
+    dx=(b-a)/n
+    Xlist=[a]
+    Ylist=[f(a)]
+    T = 0
+    # integral
+    for i in range(n):
+        Xlist.append(a+dx*(i+1))
+        Ylist.append(f(a+dx*(i+1)))
+        T += (f(a+dx*i)+f(a+dx*(i+1)))/2*dx
+    # draw graph
+    plt.plot(Xlist, Ylist)
+    plt.vlines(Xlist, 0, Ylist, colors='skyblue')
+    plt.hlines(0,a,b,colors='black')
+    plt.show()
+    return T
+
+expression = input('python언어로 x에 대한 함수식 :')
+list1 = list(map(int,(input('적분시작 끝 분할개수 : ').split())))
+print(integral(list1[0], list1[1], list1[2]))
